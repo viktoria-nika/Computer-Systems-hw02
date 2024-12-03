@@ -1,0 +1,17 @@
+# Використовуємо Python образ
+FROM python:3.9
+
+# Встановлюємо робочу директорію
+WORKDIR /app
+
+# Копіюємо файл вимог
+COPY requirements.txt .
+
+# Встановлюємо залежності
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копіюємо весь код
+COPY . .
+
+# Вказуємо команду для запуску застосунку
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
